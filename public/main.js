@@ -20,7 +20,14 @@ socket.on('chat message', (data) => {
     const messageElement = document.createElement('div');
     messageElement.classList.add('message');
     messageElement.classList.add(data.userId === mySocketId ? 'sent' : 'received');
-    messageElement.textContent = data.message;
+    
+    messageElement.innerHTML = `
+        <h4>${data.userId === mySocketId ? 'Tú' : data.userId}</h4>
+
+        <p>${data.message}</p>
+
+        <small>${data.timestamp}</small></p>
+    `
     messages.appendChild(messageElement);
     messages.scrollTop = messages.scrollHeight;
 });
